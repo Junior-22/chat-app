@@ -17,15 +17,15 @@ export default class Home extends Component {
 
     this.state = {
       name: "",
-      // bgColor: "",
+      bgColor: this.colors.blue,
     };
 
   }
 
   // function to update the state with the new background color for Chat Screen chosen by the user
-  // changeBgColor = (newColor) => {
-  //   this.setState({ bgColor: newColor });
-  // };
+  changeBgColor = (newColor) => {
+    this.setState({ bgColor: newColor });
+  };
 
   // background colors to choose
   colors = {
