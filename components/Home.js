@@ -86,11 +86,13 @@ export default class Home extends Component {
                 onPress={() => this.changeBgColor(this.colors.blue)}
               />
             </View>
-            {/* <Button
+            {/* <Pressable
               style={[styles.button, styles.buttontext]}
               title="Go to Chat"
               onPress={() => this.props.navigation.navigate("Chat", { name: this.state.name })}
-            /> */}
+            >
+              <Text style={styles.buttontext}>Start chatting</Text>
+            </Pressable> */}
 
             {/* allow the user to click on a button and be redirected to the chat page */}
             <Button
@@ -98,15 +100,13 @@ export default class Home extends Component {
               onPress={() =>
                 this.props.navigation.navigate("Chat", {
                   name: this.state.name,
-                  bgColor: this.state.bgColor,
+                  // bgColor: this.state.bgColor,
                 })}
               title="Start chatting"
             />
-            {/* <Text style={styles.buttontext}>Start chatting</Text> */}
-            {/* </Button> */}
           </View>
-        </ImageBackground>
-      </View>
+        </ImageBackground >
+      </View >
 
     );
   }
