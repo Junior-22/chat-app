@@ -100,7 +100,7 @@ export default class Home extends Component {
               onPress={() =>
                 this.props.navigation.navigate("Chat", {
                   name: this.state.name,
-                  // bgColor: this.state.bgColor,
+                  bgColor: this.state.bgColor,
                 })}
               title="Start chatting"
             />
