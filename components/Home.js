@@ -1,5 +1,5 @@
 import React, { Component, useState } from "react";
-// import BackgroundImage from "../img/background-image.png";
+
 import {
   View,
   Text,
@@ -15,9 +15,10 @@ export default class Home extends Component {
   constructor(props) {
     super(props);
 
+    // add user's name & background color to state
     this.state = {
       name: "",
-      bgColor: this.colors.blue,
+      bgColor: ""
     };
 
   }
@@ -32,7 +33,7 @@ export default class Home extends Component {
     black: "#090C08",
     purple: "#474056",
     gray: "#8A95A5",
-    green: "B9C6AE",
+    green: "#B9C6AE",
     blue: "#1B70A0",
   };
 
@@ -41,13 +42,15 @@ export default class Home extends Component {
     return (
 
       <View style={styles.container}>
+
+        {/* set app background */}
         <ImageBackground
           source={require("../assets/background-image.png")}
           resizeMode="cover"
           style={styles.image}
         >
 
-          <Text style={styles.title}>App title</Text>
+          <Text style={styles.title}>ChatApp</Text>
 
           <View style={styles.inner}>
 
@@ -61,41 +64,46 @@ export default class Home extends Component {
 
             {/* Allow user to choose a background color for the chat screen */}
             <Text style={styles.text}>
-              {" "}
-              Choose Background Color{" "}
+              Choose Background Color
             </Text>
             <View style={styles.colorContainer}>
               <TouchableOpacity
-                style={styles.colorButton}
+                style={styles.color1}
                 onPress={() => this.changeBgColor(this.colors.black)}
               />
               <TouchableOpacity
-                style={styles.colorButton}
+                style={styles.color2}
                 onPress={() => this.changeBgColor(this.colors.purple)}
               />
               <TouchableOpacity
-                style={styles.colorButton}
+                style={styles.color3}
                 onPress={() => this.changeBgColor(this.colors.gray)}
               />
               <TouchableOpacity
-                style={styles.colorButton}
+                style={styles.color4}
                 onPress={() => this.changeBgColor(this.colors.green)}
               />
               <TouchableOpacity
-                style={styles.colorButton}
+                style={styles.color5}
                 onPress={() => this.changeBgColor(this.colors.blue)}
               />
             </View>
-            {/* <Pressable
+
+            {/* navigate to the chat screen, display user's name in the nav bar of the chat screen & bgColor */}
+            <Pressable
               style={[styles.button, styles.buttontext]}
               title="Go to Chat"
-              onPress={() => this.props.navigation.navigate("Chat", { name: this.state.name })}
+              onPress={() =>
+                this.props.navigation.navigate("Chat", {
+                  name: this.state.name,
+                  bgColor: this.state.bgColor
+                })}
             >
               <Text style={styles.buttontext}>Start chatting</Text>
-            </Pressable> */}
+            </Pressable>
 
             {/* allow the user to click on a button and be redirected to the chat page */}
-            <Button
+            {/* <Button
               style={styles.button}
               onPress={() =>
                 this.props.navigation.navigate("Chat", {
@@ -103,7 +111,7 @@ export default class Home extends Component {
                   bgColor: this.state.bgColor,
                 })}
               title="Start chatting"
-            />
+            /> */}
           </View>
         </ImageBackground >
       </View >
@@ -112,11 +120,10 @@ export default class Home extends Component {
   }
 }
 
+// Stylesheet
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // justifyContent: "center",
-    // alignItems: "center"
   },
 
   image: {
@@ -165,7 +172,36 @@ const styles = StyleSheet.create({
     justifyContent: "space-evenly",
   },
 
-  colorButton: {
+  color1: {
+    backgroundColor: "#090C08",
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+  },
+
+  color2: {
+    backgroundColor: "#474056",
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+  },
+
+  color3: {
+    backgroundColor: "#8A95A5",
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+  },
+
+  color4: {
+    backgroundColor: "#B9C6AE",
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+  },
+
+  color5: {
+    backgroundColor: "#1B70A0",
     width: 40,
     height: 40,
     borderRadius: 20,
@@ -176,6 +212,8 @@ const styles = StyleSheet.create({
     width: "88%",
     justifyContent: "center",
     alignItems: "center",
+    borderWidth: 1,
+    backgroundColor: "#757083"
   },
 
   buttontext: {
