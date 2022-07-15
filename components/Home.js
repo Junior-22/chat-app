@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React, { Component } from "react";
 
 import {
   View,
@@ -60,6 +60,10 @@ export default class Home extends Component {
               onChangeText={(name) => this.setState({ name })}
               value={this.state.name}
               placeholder='Your name'
+              // add Accessibility Features
+              accessible={true}
+              accessibilityLabel="your name"
+              accessibilityHint="Type the name you want to use in the chat room"
             />
 
             {/* Allow user to choose a background color for the chat screen */}
@@ -70,22 +74,42 @@ export default class Home extends Component {
               <TouchableOpacity
                 style={styles.color1}
                 onPress={() => this.changeBgColor(this.colors.black)}
+                accessible={true}
+                accessibilityRole="button"
+                accessibilityLabel="black background color"
+                accessibilityHint="adds black background color to the chat screen"
               />
               <TouchableOpacity
                 style={styles.color2}
                 onPress={() => this.changeBgColor(this.colors.purple)}
+                accessible={true}
+                accessibilityRole="button"
+                accessibilityLabel="purple background color"
+                accessibilityHint="adds purple background color to the chat screen"
               />
               <TouchableOpacity
                 style={styles.color3}
                 onPress={() => this.changeBgColor(this.colors.gray)}
+                accessible={true}
+                accessibilityRole="button"
+                accessibilityLabel="gray background color"
+                accessibilityHint="adds gray background color to the chat screen"
               />
               <TouchableOpacity
                 style={styles.color4}
                 onPress={() => this.changeBgColor(this.colors.green)}
+                accessible={true}
+                accessibilityRole="button"
+                accessibilityLabel="green background color"
+                accessibilityHint="adds green background color to the chat screen"
               />
               <TouchableOpacity
                 style={styles.color5}
                 onPress={() => this.changeBgColor(this.colors.blue)}
+                accessible={true}
+                accessibilityRole="button"
+                accessibilityLabel="blue background color"
+                accessibilityHint="adds blue background color to the chat screen"
               />
             </View>
 
