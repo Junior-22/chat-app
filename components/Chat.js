@@ -31,7 +31,7 @@ export default class Chat extends Component {
         {
           _id: 2,
           text: "This is a system message",
-          createAt: new Date(),
+          createdAt: new Date(),
           system: true,
           color: "black"
         },
