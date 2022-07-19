@@ -87,11 +87,6 @@ export default class Chat extends Component {
         },
       });
 
-      this.referencesMessageUser = firebase
-        .firestore()
-        .collection("messages")
-        .where("uid", "==", this.state.uid);
-
       this.unsubscribe = this.referenceChatMessages
         .orderBy("createdAt", "desc")
         .onSnapshot(this.onCollectionUpdate);
@@ -118,7 +113,7 @@ export default class Chat extends Component {
         user: {
           _id: data.user._id,
           name: data.user.name,
-          avatar: data.avatar
+          avatar: data.user.avatar
         }
 
       });
