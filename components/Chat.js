@@ -18,7 +18,7 @@ export default class Chat extends Component {
       user: {
         _id: "",
         name: "",
-        avatar: ""
+        avatar: "https://placeimg.com/140/140/any"
       }
     }
 
