@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { View, Text, Platform, KeyboardAvoidingView } from "react-native";
 // import GiftedChat for messaging 
 import { GiftedChat, Bubble } from "react-native-gifted-chat";
+// store offline messages
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 // establish a connection to Firestore
 const firebase = require("firebase");
@@ -41,33 +43,44 @@ export default class Chat extends Component {
     this.referenceChatMessages = firebase.firestore().collection("messages");
   }
 
-  // componentDidMount() {
-  //   this.setState({
-  //     messages: [
-  //       {
-  //         _id: 1,
-  //         text: "Hello developer",
-  //         createAt: new Date(),
-  //         user: {
-  //           _id: 2,
-  //           name: "React Native",
-  //           avatar: "https://placeimg.com/140/140/any",
-  //         },
-  //       },
+  // store messages to asyncStorage
+  async saveMessages() {
+    try {
+      await AsyncStorage.setItem("messages", JSON.stringify(this.state.messages));
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
 
-  //       // Advanced Gifted Chat: System Messages
-  //       {
-  //         _id: 2,
-  //         text: "This is a system message",
-  //         createdAt: new Date(),
-  //         system: true,
-  //         color: "black"
-  //       },
-  //     ],
-  //   })
-  // }
+  // retrieve messages from asyncStorage
+  async getMessages() {
+    let messages = "";
+    try {
+      messages = await AsyncStorage.getItem("messages") || [];
+      this.setState({
+        messages: JSON.parse(messages)
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
+
+  // delete messages from asyncStorage
+  async deleteMessages() {
+    try {
+      await AsyncStorage.removeItem("messages");
+      this.setState({
+        messages: []
+      })
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
 
   componentDidMount() {
+    // load messages from asyncStorage
+    this.getMessages();
+
     // Reference to load messages from Firebase
     this.referenceChatMessages = firebase.firestore().collection("messages");
 
@@ -129,6 +142,7 @@ export default class Chat extends Component {
       messages: GiftedChat.append(previousState.messages, messages),
     })), () => {
       this.addMessages();
+      this.saveMessages();
     };
   }
 
@@ -188,7 +202,8 @@ export default class Chat extends Component {
           messages={this.state.messages}
           onSend={messages => this.onSend(messages)}
           user={{
-            _id: 1,
+            _id: this.state.user._id,
+            name: name,
           }}
         />
         {/* fix message input field on android keyboard */}
