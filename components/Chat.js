@@ -1,13 +1,26 @@
 import React, { Component } from "react";
 import { View, Text, Platform, KeyboardAvoidingView } from "react-native";
 // import GiftedChat for messaging 
-import { GiftedChat, Bubble } from "react-native-gifted-chat";
+import { GiftedChat, Bubble, InputToolbar } from "react-native-gifted-chat";
 // store offline messages
 import AsyncStorage from "@react-native-async-storage/async-storage";
+// to check is user is online/offline
+import NetInfo from "@react-native-community/netinfo";
 
 // establish a connection to Firestore
 const firebase = require("firebase");
 require("firebase/firestore");
+
+// app's Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyDwEgmj70N64JsWclY0toIAvRlwBewkSDU",
+  authDomain: "chatapp-73290.firebaseapp.com",
+  projectId: "chatapp-73290",
+  storageBucket: "chatapp-73290.appspot.com",
+  messagingSenderId: "397157238401",
+  appId: "1:397157238401:web:ae65e82051c0cbf0f9af80",
+  measurementId: "G-HVFPM27EEX"
+};
 
 export default class Chat extends Component {
 
@@ -20,20 +33,10 @@ export default class Chat extends Component {
       user: {
         _id: "",
         name: "",
-        avatar: "https://placeimg.com/140/140/any"
-      }
+        avatar: ""
+      },
+      isConnected: false,
     }
-
-    // app's Firebase configuration
-    const firebaseConfig = {
-      apiKey: "AIzaSyDwEgmj70N64JsWclY0toIAvRlwBewkSDU",
-      authDomain: "chatapp-73290.firebaseapp.com",
-      projectId: "chatapp-73290",
-      storageBucket: "chatapp-73290.appspot.com",
-      messagingSenderId: "397157238401",
-      appId: "1:397157238401:web:ae65e82051c0cbf0f9af80",
-      measurementId: "G-HVFPM27EEX"
-    };
 
     if (!firebase.apps.length) {
       firebase.initializeApp(firebaseConfig);
@@ -83,6 +86,16 @@ export default class Chat extends Component {
 
     // Reference to load messages from Firebase
     this.referenceChatMessages = firebase.firestore().collection("messages");
+
+    // check user's connection status
+    NetInfo.fetch().then(connection => {
+      if (connection.isConnected) {
+        this.setState({ isConnected: true });
+        console.log("online");
+      } else {
+        console.log("offline");
+      }
+    });
 
     // Authenticate user anonymously
     this.authUnsubscribe = firebase.auth().onAuthStateChanged(async (user) => {
@@ -157,6 +170,18 @@ export default class Chat extends Component {
     });
   }
 
+  // disable sending messages when user is offline
+  renderInputToolbar(props) {
+    if (this.state.isConnected == false) {
+    } else {
+      return (
+        <InputToolbar
+          {...props}
+        />
+      );
+    }
+  }
+
   // Custom message bubble
   renderBubble(props) {
     return (
@@ -199,11 +224,13 @@ export default class Chat extends Component {
       <View style={{ flex: 1, backgroundColor: bgColor }}>
         <GiftedChat
           renderBubble={this.renderBubble.bind(this)}
+          renderInputToolbar={this.renderInputToolbar.bind(this)}
           messages={this.state.messages}
           onSend={messages => this.onSend(messages)}
           user={{
             _id: this.state.user._id,
             name: name,
+            avatar: this.state.user.avatar
           }}
         />
         {/* fix message input field on android keyboard */}
