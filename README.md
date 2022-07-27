@@ -114,7 +114,7 @@ and location data.
 
 ● Navigate to the root folder
 
-● Run expo start or npm start
+● Run "expo start" or "npm start"
 
 ● Expo will build the project and display development options in a browser window.
 
@@ -137,4 +137,37 @@ Create a google Firebase/Firestore account for storage. <a href="https://firebas
 5. Back in the Firebase project in the browser, open up "Project settings", then "General" tab. Under the section "Your apps", link Firebase to app by clicking the tag icon (</>).
 
 6. After connecting, it will generate configurations for different platforms. Here, click "Firestore for Web" and then copy the contents of the config object info into your chat.js file.
+
+<h2>Lessons</h4>
+
+<b>working with firebase storage</b>
+
+I had some issues originating from firebase/firestore. One example was that expo would crash as soon as I tried to upload an image or take a picture. I tried several approaches to get to the bottom of this. What worked for me was to adjust my storage rules
+
+    rules_version = '2';
+    service firebase.storage {
+      match /b/{bucket}/o {
+        match /{allPaths=**} {
+          allow read, write: if true;
+        }
+        match /users/{userId}/{allPaths=**} {
+          allow read: if true;
+          allow write: if request.auth.uid == userId;
+        }
+      }
+    }
+
+<b>working with react-native</b>
+
+I had issues with my onActionPress which returned an error "TypeError: _this.context.actionSheet is not a function. (In '_this.context.actionSheet()', '_this.context.actionsSHeet' is undefined)". Even though, my code was explicitly written, I realised the problem was with GiftedChat. I downgraded from version 1.0.4 to version 0.16.3 and it solved the issue.
+
+Once offline, the messages in the chat disappeared, because AsyncStorage has been extracted from react-native core, and I had to install and import @react-native-async-storage/async-storage instead of react-native.
+
+<b>working with Expo</b>
+
+Repeatedly the expo web browser did not open because of dependency issues with packages from react native. For example: Expo required me to use more outdated versions of @react-native-community/netinfo as well as react-native-maps to be compatible with Expo.
+
+<b>the whole project</b>
+
+I often had problems resulting from the combination of expo, react-native and firebase. I had to continuously figure out where it came from and debug the problem. As always it was enriching to try out new libraries and services or apply familiar technologies in a new context.
 
