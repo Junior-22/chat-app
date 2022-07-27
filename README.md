@@ -165,7 +165,7 @@ Once offline, the messages in the chat disappeared, because AsyncStorage has bee
 
 <b>working with Expo</b>
 
-Repeatedly the expo web browser did not open because of dependency issues with packages from react native. For example: Expo required me to use more outdated versions of @react-native-community/netinfo as well as react-native-maps to be compatible with Expo.
+Repeatedly the expo web browser did not open because of dependency issues with packages from react native. e.g, Expo required me to use more outdated versions of @react-native-community/netinfo as well as react-native-maps to be compatible with Expo.
 
 <b>the whole project</b>
 
