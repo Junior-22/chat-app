@@ -92,13 +92,13 @@ and location data.
 
 ● Expo / Expo Go
 
-  npm install expo-cli -g
+    npm install expo-cli -g
 
-● <a href="https://developer.android.com/studio">Android Studio</a> for Windows & Linux users 
+● <a href="https://developer.android.com/studio">Android Studio</a> for Windows & Linux users
 
-- <a href="https://developer.apple.com/xcode/">Xcode</a> for Mac users
+● <a href="https://developer.apple.com/xcode/">Xcode</a> for Mac users
 
-- Install the Expo app on your mobile device (available in Google Play Store and Apple Store)
+● Install the Expo app on your mobile device (available in Google Play Store and Apple Store)
 
 
 <b>Install required packages from package.json</b>
