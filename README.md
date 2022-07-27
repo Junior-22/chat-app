@@ -78,28 +78,63 @@ and location data.
 <h3>Technologies</h3>
 
 ● React Native
+
 ● Expo
+
 ● Google Firebase
+
 ● Gifted Chat
 
 
 <h3>Installation</h3>
 
 ● Node.js and npm
-● Android Studio or Xcode for iOS
+
 ● Expo / Expo Go
+
+  npm install expo-cli -g
+
+● <a href="https://developer.android.com/studio">Android Studio</a> for Windows & Linux users 
+
+- <a href="https://developer.apple.com/xcode/">Xcode</a> for Mac users
+
+- Install the Expo app on your mobile device (available in Google Play Store and Apple Store)
+
 
 <b>Install required packages from package.json</b>
 
 ● Download this repo
+
 ● Navigate to the root folder via CLI
-● Install required packages in package.json
+
+● Install required packages in <a href="https://github.com/Junior-22/chat-app/blob/main/package.json">package.json</a>
 
 
 <h3>Run the App</h3>
 
 ● Navigate to the root folder
+
 ● Run expo start or npm start
+
 ● Expo will build the project and display development options in a browser window.
+
 ● The Expo Go app can be used to show the app on a physical device. Scan the QR Code in the development options with the app
+
 ● The app can also be run through an emulator on your desktop via Expo
+
+<h3>Setup database</h3>
+
+Create a google Firebase/Firestore account for storage. <a href="https://firebase.google.com/docs/web/setup">Check the firebase manual</a>
+
+1. Sign in to your <a href="https://firebase.google.com/">Google Firebase account</a>
+
+2. Click on "create a project" and follow the steps. Choose test mode then start a collection, ("Auto-ID" to generate a random Document ID).
+
+3. Install Firestore via Firebase: npm install firebase
+
+4. Import firebase into your chat.js file
+
+5. Back in the Firebase project in the browser, open up "Project settings", then "General" tab. Under the section "Your apps", link Firebase to app by clicking the tag icon (</>).
+
+6. After connecting, it will generate configurations for different platforms. Here, click "Firestore for Web" and then copy the contents of the config object info into your chat.js file.
+
