@@ -1,20 +1,20 @@
-<h2>Chat-app</h2>
+# Chat-app
 
-<h3>Objective</h3>
+## Objective
 
 The objective is to build a chat app for mobile devices using React Native. The app will provide users with a chat interface and options to share images, pictures and their location.
 
 
-<h3>GETTING STARTED</h3>
+## Getting started
 The easiest way to start is to clone the repository.
 
 
-<h3>clone the repository</h3>
+## Clone the repository
 
 git clone https://github.com/Junior-22/chat-app
 
 
-<h3>User Stories</h3>
+## User Stories
 
 ● As a new user, I want to be able to easily enter a chat room so I can quickly start talking to my
 friends and family.
@@ -33,7 +33,7 @@ time.
 reader so that I can engage with a chat interface.
 
 
-<h3>Key Features</h3>
+## Key Features
 
 ● A page where users can enter their name and choose a background color for the chat screen
 before joining the chat.
@@ -46,7 +46,7 @@ and location data.
 ● Data gets stored online and offline.
 
 
-<h3>Technical Requirements</h3>
+## Technical Requirements
 
 ● The app is written in React Native.
 
@@ -66,16 +66,16 @@ and location data.
 
 ● The app stores images in Firebase Cloud Storage.
 
-● The app is able to read the user’s location data.
+● The app can read the user’s location data.
 
-● Location data is sent via the chat in a map view.
+● Location data is sent via chat in a map view.
 
 ● The chat interface and functionality are created using the Gifted Chat library.
 
 ● The app’s codebase contains comments.
 
 
-<h3>Technologies</h3>
+## Technologies
 
 ● React Native
 
@@ -86,7 +86,7 @@ and location data.
 ● Gifted Chat
 
 
-<h3>Installation</h3>
+## Installation
 
 ● Node.js and npm
 
@@ -94,23 +94,23 @@ and location data.
 
     npm install expo-cli -g
 
-● <a href="https://developer.android.com/studio">Android Studio</a> for Windows & Linux users
+● [Android Studio](https://developer.android.com/studio) for Windows & Linux users
 
-● <a href="https://developer.apple.com/xcode/">Xcode</a> for Mac users
+● [Xcode](https://developer.apple.com/xcode/) for Mac users
 
 ● Install the Expo app on your mobile device (available in Google Play Store and Apple Store)
 
 
-<b>Install required packages from package.json</b>
+**Install required packages from package.json***
 
 ● Download this repo
 
 ● Navigate to the root folder via CLI
 
-● Install required packages in <a href="https://github.com/Junior-22/chat-app/blob/main/package.json">package.json</a>
+● Install required packages in [package.json](https://github.com/Junior-22/chat-app/blob/main/package.json)
 
 
-<h3>Run the App</h3>
+## Run the App
 
 ● Navigate to the root folder
 
@@ -122,11 +122,11 @@ and location data.
 
 ● The app can also be run through an emulator on your desktop via Expo
 
-<h3>Setup database</h3>
+## Setup database
 
-Create a google Firebase/Firestore account for storage. <a href="https://firebase.google.com/docs/web/setup">Check the firebase manual</a>
+Create a google Firebase/Firestore account for storage. [Check the firebase manual](https://firebase.google.com/docs/web/setup")
 
-1. Sign in to your <a href="https://firebase.google.com/">Google Firebase account</a>
+1. Sign in to your [Google Firebase account](https://firebase.google.com/)
 
 2. Click on "create a project" and follow the steps. Choose test mode then start a collection, ("Auto-ID" to generate a random Document ID).
 
@@ -138,9 +138,9 @@ Create a google Firebase/Firestore account for storage. <a href="https://firebas
 
 6. After connecting, it will generate configurations for different platforms. Here, click "Firestore for Web" and then copy the contents of the config object info into your chat.js file.
 
-<h2>Lessons</h4>
+## Lessons
 
-<b>working with firebase storage</b>
+**working with firebase storage**
 
 I had some issues originating from firebase/firestore. One example was that expo would crash as soon as I tried to upload an image or take a picture. I tried several approaches to get to the bottom of this. What worked for me was to adjust my storage rules
 
@@ -157,17 +157,17 @@ I had some issues originating from firebase/firestore. One example was that expo
       }
     }
 
-<b>working with react-native</b>
+**working with react-native**
 
 I had issues with my onActionPress which returned an error "TypeError: _this.context.actionSheet is not a function. (In '_this.context.actionSheet()', '_this.context.actionsSHeet' is undefined)". Even though, my code was explicitly written, I realised the problem was with GiftedChat. I downgraded from version 1.0.4 to version 0.16.3 and it solved the issue.
 
 Once offline, the messages in the chat disappeared, because AsyncStorage has been extracted from react-native core, and I had to install and import @react-native-async-storage/async-storage instead of react-native.
 
-<b>working with Expo</b>
+**working with Expo**
 
 Repeatedly the expo web browser did not open because of dependency issues with packages from react native. e.g, Expo required me to use more outdated versions of @react-native-community/netinfo as well as react-native-maps to be compatible with Expo.
 
-<b>the whole project</b>
+**the whole project**
 
 I often had problems resulting from the combination of expo, react-native and firebase. I had to continuously figure out where it came from and debug the problem. As always it was enriching to try out new libraries and services or apply familiar technologies in a new context.
 
