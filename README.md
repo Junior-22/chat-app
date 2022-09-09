@@ -1,5 +1,8 @@
 # Chat-app
 
+![Screenshot](screenshot1.png)
+![Screenshot](screenshot2.png)
+
 ## Objective
 
 The objective is to build a chat app for mobile devices using React Native. The app will provide users with a chat interface and options to share images, pictures and their location.
