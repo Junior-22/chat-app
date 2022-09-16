@@ -1,7 +1,7 @@
 # Chat-app
 
-![Screenshot](screenshot1.png)
-![Screenshot](screenshot2.png)
+![Screenshot](chat-app.jpg)
+
 
 ## Objective
 
